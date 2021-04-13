@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.lang.module.ResolutionException;
 import java.util.List;
 
@@ -55,7 +56,7 @@ public class NewsController {
     // "save" will create an object you input and persist it. It´s a post request
     // (saves, but if in application.properties in the last line is "create" instead of "validate", the table will be dropped if we stop Springboot)
     @PostMapping
-    public ResponseEntity<News> createArticle(@RequestBody News article) {
+    public ResponseEntity<News> createArticle(@Valid @RequestBody News article) {
         newsRepository.save(article);
         return ResponseEntity.status(HttpStatus.CREATED).body(article);
     }

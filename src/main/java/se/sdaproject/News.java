@@ -2,6 +2,7 @@ package se.sdaproject;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -11,11 +12,15 @@ public class News {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Column(nullable = false)
     private String title;
+    @Column(nullable = false)
     private String body;
+    @Column(nullable = false)
     private String authorName;
 
-    @OneToMany(mappedBy = "commentedArticle")
+    @OneToMany(mappedBy = "commentedArticle", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
 

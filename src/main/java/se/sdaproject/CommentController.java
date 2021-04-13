@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 public class CommentController {
@@ -27,7 +28,7 @@ public class CommentController {
         return ResponseEntity.status(HttpStatus.CREATED).body(comment);
     }
 
-    //Updates comment
+    //Updates a comment
     @PutMapping("/comments/{id}")
     public ResponseEntity<Comment> updateComment(@PathVariable Long id, @Valid @RequestBody Comment updatedComment) {
         Comment comment = commentRepository
@@ -38,9 +39,30 @@ public class CommentController {
 
     }
 
+    //Returns all comments on article given by articleID
+    @GetMapping("/articles/{articleID}/comments")
+    public ResponseEntity<List<Comment>> getComments(@PathVariable Long articleID) {
+        News article = newsRepository.findById(articleID).orElseThrow(ResourceNotFoundException::new);
+        List<Comment> comment = article.getComments();
+        return ResponseEntity.ok(comment);
+    }
 
+    //Returns all comments made by author given by authorName
+    @GetMapping(value = "/comments", params = {"authorName"})
+    public ResponseEntity<List<Comment>> getCommentByAuthor(@RequestParam (value = "authorName") String authorName) {
+        List<Comment> sortedComments = commentRepository.findByAuthorName(authorName);
+        return ResponseEntity.ok(sortedComments);
 
+    }
 
+    //Deletes a comment
+    @DeleteMapping("/comments/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteComment(@PathVariable Long id) {
+        Comment comment = commentRepository.findById(id)
+                .orElseThrow(ResourceNotFoundException::new);
+        commentRepository.delete(comment);
+    }
 
 
 

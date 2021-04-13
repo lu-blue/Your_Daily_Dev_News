@@ -28,6 +28,8 @@ public class Comment {
     @NotNull
     private News commentedArticle;
 
+
+
     public String getBody() {
         return body;
     }
