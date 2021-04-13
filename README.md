@@ -1,7 +1,7 @@
-# Dev News
+# Your Daily Dev News
 
 ## Introduction
-This assignment is all about building the backend API for a developer news site where users can create articles, comment them and associate them with specific topics. It doesn't require a graphical user interface, so it is enough to be able to make requests and get plain json text responses via curl/Postman.
+This assignment at SDA 2021 of Back-End Module is all about building the backend API for a developer news site where users can create articles, comment them and associate them with specific topics. It doesn't require a graphical user interface, so it is enough to be able to make requests and get plain json text responses via curl/Postman.
 
 ## Learning Objectives
 * Understand the basic structure of a Spring application.
@@ -10,12 +10,11 @@ This assignment is all about building the backend API for a developer news site 
 * Learn how to interact with a relational database using an ORM tool implementing Spring JPA (Hibernate).
 
 ## Setup
-Remember that you will need to configure the following dependencies in your `build.gradle`:
+You will need to configure the following dependencies in your `build.gradle`:
 * Spring Web
 * Spring JPA
 * PostgreSQL Driver
 * Docker
-* Gradle
 
 `src/main/resources/application.properties` should also be properly configured:
 ```properties
@@ -36,7 +35,7 @@ All 3 exercises were tested via Postman.
 ## Assignment
 
 ### Articles
-Article is the core entity in our project. It represents a news article with a unique **id**, **title**, **body** (article text content) and the
+Article is the core entity of this project. It represents a news article with a unique **id**, **title**, **body** (article text content) and the
 **authorName**.
 
 Example JSON response when requesting an article:
@@ -51,13 +50,14 @@ Example JSON response when requesting an article:
 ```
 
 These are the endpoints for the article API that should exist:
+
 | HTTP Method | HTTP Path | Action |
 | ------------|-----------|--------|
-| `GET`    | `/articles`      | return all articles. |
-| `GET`    | `/articles/{id}` | return a specific article based on the provided id.|
-| `POST`   | `/articles`      | create a new article.|
-| `PUT`    | `/articles/{id}` | update the given article.|
-| `DELETE` | `/articles/{id}` | delete the given article.|
+| `GET`    | `/articles`    | return all articles. |
+| `GET`    | `/articles/{id}` | return all comments made by author given by `authorName`. |
+| `POST`   | `/articles`    | create a new article. |
+| `PUT`    | `/articles/{id}`                    | update the given article. |
+| `DELETE` | `/articles/{id}`                    | delete the given article. |
 
 #### Exercise 1
 Create an Article model and implement the above API.
