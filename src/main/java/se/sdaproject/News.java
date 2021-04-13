@@ -12,20 +12,18 @@ public class News {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Column(nullable = false)
     private String title;
-    @Column(nullable = false)
     private String body;
-    @Column(nullable = false)
     private String authorName;
 
     @OneToMany(mappedBy = "commentedArticle", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
+    @ManyToMany
+    private List<Topic> topics;
+
 
     public News() {
-
     }
 
     public News(String title, String body, String authorName) {
@@ -73,5 +71,13 @@ public class News {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public List<Topic> getTopic() {
+        return topics;
+    }
+
+    public void setTopics(List<Topic> topics) {
+        this.topics = topics;
     }
 }
