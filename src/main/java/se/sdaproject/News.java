@@ -59,8 +59,14 @@ public class News {
 
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
+
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
 
-
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 }
