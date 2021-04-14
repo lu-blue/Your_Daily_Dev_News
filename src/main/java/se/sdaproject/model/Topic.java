@@ -1,8 +1,9 @@
-package se.sdaproject;
+package se.sdaproject.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import se.sdaproject.model.News;
 
 import javax.persistence.*;
 import java.util.List;
